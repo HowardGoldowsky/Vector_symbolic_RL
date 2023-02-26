@@ -40,7 +40,7 @@ function main()
 
             % HDC Cart-pole
             steps = 0;
-            state = resetState(false); % do not use rand init
+            state = resetState(true);           % false: do not use rand init
             doneHV = false; 
             [H,~] = encodeStateHV_delta(state, basisState, P1, P2, ...
                 P3, P4, maxVal, minVal);
