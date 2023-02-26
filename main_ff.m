@@ -1,7 +1,7 @@
-function main_ff(J, M1, M2, P1, P2, P3, P4)      
+function main_ff(basisState, M1, M2, P1, P2, P3, P4)      
     
     % Initializations
-    MAX_EPISODES = 1000;
+    MAX_EPISODES = 100;
     performanceTelem = nan(1,MAX_EPISODES);
     maxVal = [4.8, .5, deg2rad(24), deg2rad(50)];            % [meters, m/s, rad, rad/s]
     minVal = [-4.8, -.5, -deg2rad(24), -deg2rad(50)];      % [meters, m/s, rad, rad/s]
@@ -15,8 +15,8 @@ function main_ff(J, M1, M2, P1, P2, P3, P4)
             steps = 0;
             state = resetState(true);                                  % true = use small random initial state
             doneHV = false; 
-            [H,~] = encodeStateHV_orig(state, J, P1, P2, ...
-                P3, P4, maxVal, minVal, J);
+            [H,~] = encodeStateHV_delta(state, basisState, P1, P2, ...
+                P3, P4, maxVal, minVal);
 
             while ~doneHV                                                                                                    
                 
