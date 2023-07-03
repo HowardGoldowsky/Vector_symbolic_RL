@@ -32,8 +32,13 @@ classdef PhasorHV < Hypervector
         function obj = normalize(obj)
             % Makes the length of each phasor element equal to 1. 
             % This is an element-by-element normalization, so  
-            % each sample returns to the unit circle.
-            obj.samples = obj.samples./abs(obj.samples);
+            % each sample returns to the unit circle. If the vector
+            % contains any zeros, then return unchanged.
+            if (~all(obj.samples))
+                return;
+            else
+                obj.samples = obj.samples./abs(obj.samples);
+            end
         end
         
         function result = bind(v1,v2)

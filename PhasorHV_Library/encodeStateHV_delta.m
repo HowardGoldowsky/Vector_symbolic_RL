@@ -23,8 +23,8 @@ limit = maxVal - minVal; % DEBUG
 % Linearly map delta to between 0:2*pi around the unit circle.
 % I dont think this mapping to 2*pi matters, because the only thing that
 % matters is the gradient descent of the model HV. 
-map = (delta./limit) * 2 * pi; % DEBUG
-%map = state;
+%map = (delta./limit) * 2 * pi; % DEBUG
+map = delta;
 
 % Encode feature hypervectors. The PhasorHV class is a child handle,
 % therefor the changes will persist across functions.
@@ -41,5 +41,6 @@ H = bind(H,encP2);
 H = bind(H,encP3);
 H = bind(H,encP4);
 
+%H = superimpose(encP1,encP2,encP3,encP4);
 end
 
